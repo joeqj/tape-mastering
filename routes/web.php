@@ -15,8 +15,8 @@ Route::post('/audio/{post}', [AudioController::class, 'update']);
 
 Route::delete('/audio/{post}', [AudioController::class, 'destroy']);
 
-Route::get('/login', [UserController::class, 'loginForm'])->name('login');
-Route::post('/login', [UserController::class, 'loginProcess']);
-Route::get('/logout', [UserController::class, 'logoutProcess']);
+Route::get('/login', [UserController::class, 'viewLogin'])->name('login');
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'display'])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'view'])->middleware('auth');
