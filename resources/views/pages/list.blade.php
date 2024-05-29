@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-  <section class="container mx-auto py-10">
+  <section class="container py-10">
     <h2 class="text-4xl mb-10">List of audio</h2>
     <ul>
       @foreach ($audio as $post)

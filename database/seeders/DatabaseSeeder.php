@@ -7,6 +7,7 @@ use App\Models\Audio;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +21,13 @@ class DatabaseSeeder extends Seeder
         $user1 = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => Hash::make('test')
         ]);
 
         $user2 = User::factory()->create([
             'name' => 'Joe QJ',
             'email' => 'joe@email.com',
+            'password' => Hash::make('password')
         ]);
 
         Audio::create([
