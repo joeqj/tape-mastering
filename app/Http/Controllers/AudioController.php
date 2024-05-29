@@ -13,7 +13,7 @@ class AudioController extends Controller
         $audio = Audio::orderByDesc('created_at')
             ->get();
 
-        return view('list', [
+        return view('pages.list', [
             'audio' => $audio
         ]);
     }
@@ -22,7 +22,7 @@ class AudioController extends Controller
     {
         $users = User::all();
 
-        return view('create', [
+        return view('pages.create', [
             'users' => $users
         ]);
     }
@@ -41,7 +41,7 @@ class AudioController extends Controller
 
     public function edit(Audio $post)
     {
-        return view('edit', [
+        return view('pages.edit', [
             'post' => $post
         ]);
     }
