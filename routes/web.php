@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AudioController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AudioController::class, 'list']);
 
-Route::get('/about', function () {
-    return 'about';
-});
+Route::get('/create', [AudioController::class, 'create']);
+Route::post('/create', [AudioController::class, 'store']);
+
+Route::get('/audio/{post}', [AudioController::class, 'edit']);
+Route::post('/audio/{post}', [AudioController::class, 'update']);
+
+Route::delete('/audio/{post}', [AudioController::class, 'destroy']);
