@@ -6,8 +6,14 @@
     <div class="w-1/3 text-center">
       <h1>Tape Masters</h1>
     </div>
-    <div class="w-1/3">
-
+    <div class="w-1/3 flex justify-end space-x-4">
+      @guest
+        <a href="{{ url('login') }}">Login / Signup</a>
+        @endguest
+      @auth
+        <a href="{{ url('dashboard') }}">Dashboard</a>
+        <a href="{{ url('logout') }}">Logout</a>
+      @endauth
     </div>
   </div>
 </header>
