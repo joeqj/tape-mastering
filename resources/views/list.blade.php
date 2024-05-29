@@ -12,7 +12,7 @@
   <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
   <!-- Styles -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  @vite("resources/scss/app.scss", "resources/js/app.js")
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
