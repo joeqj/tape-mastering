@@ -44,29 +44,18 @@ return [
             'throw' => false,
         ],
 
-        // 's3' => [
-        //     'driver' => 's3',
-        //     'key' => env('AWS_ACCESS_KEY_ID'),
-        //     'secret' => env('AWS_SECRET_ACCESS_KEY'),
-        //     'region' => env('AWS_DEFAULT_REGION'),
-        //     'bucket' => env('AWS_BUCKET'),
-        //     'url' => env('AWS_URL'),
-        //     'endpoint' => env('AWS_ENDPOINT'),
-        //     'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-        //     'throw' => false,
-        // ],
-
-        'backblaze' => [
+        'r2' => [
             'driver' => 's3',
-            'key' => env('B3_KEY'),
-            'secret' => env('B3_SECRET'),
-            'region' => env('B3_REGION'),
-            'bucket' => env('B3_BUCKET'),
-            'endpoint' => env('B3_ENDPOINT'),
-            'url' => env('B3_URL'),
-            'use_path_style_endpoint' => true,
+            'key' => env('CLOUDFLARE_R2_ACCESS_KEY_ID'),
+            'secret' => env('CLOUDFLARE_R2_SECRET_ACCESS_KEY'),
+            'region' => 'us-east-1',
+            'bucket' => env('CLOUDFLARE_R2_BUCKET'),
+            'url' => env('CLOUDFLARE_R2_URL'),
+            'visibility' => 'private',
+            'endpoint' => env('CLOUDFLARE_R2_ENDPOINT'),
+            'use_path_style_endpoint' => env('CLOUDFLARE_R2_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
         ],
-
     ],
 
     /*

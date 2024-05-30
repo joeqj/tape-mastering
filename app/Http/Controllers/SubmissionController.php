@@ -30,7 +30,7 @@ class SubmissionController extends Controller
 
             $file = $request->file('dropzone-file');
             $filename = $file->getClientOriginalName();
-            $path = $file->storeAs(path: 'uploads/', name: $user->id . $filename, options: 'backblaze');
+            $path = $file->store('uploads', 'r2');
 
             return view('user.upload', [
                 'fileName' => $filename,
