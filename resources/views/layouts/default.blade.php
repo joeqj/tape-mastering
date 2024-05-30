@@ -5,11 +5,13 @@
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
-  @include('includes.header')
+    @include('includes.header')
 
-  @yield('content')
+    <main id="content" class="container">
+        @yield('content')
+    </main>
 
-  @include('includes.footer')
+    @include('includes.footer')
 
 </body>
 

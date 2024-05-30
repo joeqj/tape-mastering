@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use App\Models\Audio;
+use App\Models\Submission;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,8 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         $user1 = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -30,14 +27,18 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
 
-        Audio::create([
+        Submission::create([
             'user_id' => $user1->id,
-            'title' => 'Everything you do is a balloon'
+            'title' => 'Everything you do is a balloon',
+            'comment' => 'Probably my fave song from BoC',
+            'status' => 'Pending'
         ]);
 
-        Audio::create([
+        Submission::create([
             'user_id' => $user2->id,
-            'title' => 'Roygbiv'
+            'title' => 'Roygbiv',
+            'comment' => 'Quite a bassey song, hoping to get a bit more emphasis on the high frequencies, do not mind distortion',
+            'status' => 'Paid'
         ]);
     }
 }

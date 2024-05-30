@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Audio;
+use App\Models\Submission;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class AudioController extends Controller
+class SubmissionController extends Controller
 {
     public function list()
     {
-        $audio = Audio::orderByDesc('created_at')
+        $audio = Submission::orderByDesc('created_at')
             ->get();
 
         return view('pages.list', [
@@ -34,19 +35,19 @@ class AudioController extends Controller
             'title' => ['string']
         ]);
 
-        Audio::create($data);
+        Submission::create($data);
 
         return redirect('/');
     }
 
-    public function edit(Audio $post)
+    public function edit(Submission $post)
     {
         return view('pages.edit', [
             'post' => $post
         ]);
     }
 
-    public function update(Audio $post)
+    public function update(Submission $post)
     {
         $data = request()->validate([
             'title' => ['string']
@@ -57,7 +58,7 @@ class AudioController extends Controller
         return redirect('/');
     }
 
-    public function destroy(Audio $post)
+    public function destroy(Submission $post)
     {
         $post->delete();
 

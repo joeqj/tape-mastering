@@ -4,7 +4,7 @@
 
     </div>
     <div class="w-1/3 text-center">
-      <h1>Tape Masters</h1>
+      <a href="{{ url('/') }}">Tape Masters</a>
     </div>
     <div class="w-1/3 flex justify-end space-x-4">
       @guest
