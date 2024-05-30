@@ -36,7 +36,17 @@
 
         <p>Drop your audio to be mastered below to get started</p>
 
-        <div class="flex items-center justify-center w-full mt-9">
+        @if ($errors->any())
+            <ul class="border border-red-500 text-red-500 rounded-md p-4 max-w-sm mx-auto mb-4">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        <form action="{{ url('/upload') }}" method="POST" enctype="multipart/form-data"
+            class="flex items-center justify-center w-full mt-9">
+            @csrf
             <label for="dropzone-file"
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -47,11 +57,12 @@
                     </svg>
                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
                             upload</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">WAV, AIFF, MP3 (Use WAV for best quality)</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">WAV, FLAC, AIFF, MP3 (Use WAV for best quality)</p>
                 </div>
-                <input id="dropzone-file" type="file" class="hidden" />
+                <input id="dropzone-file" name="dropzone-file" onchange="this.form.submit()" type="file"
+                    class="hidden" />
             </label>
-        </div>
+        </form>
 
     </section>
     <section class="mt-12 lg:w-3/4 lg:mx-auto">

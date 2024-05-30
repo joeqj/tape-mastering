@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SubmissionController::class, 'list']);
 
-Route::get('/create', [SubmissionController::class, 'create']);
-Route::post('/create', [SubmissionController::class, 'store']);
+
 
 Route::get('/audio/{post}', [SubmissionController::class, 'edit']);
 Route::post('/audio/{post}', [SubmissionController::class, 'update']);
@@ -20,3 +19,8 @@ Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'view'])->middleware('auth');
+
+Route::post('/upload', [SubmissionController::class, 'create']);
+Route::post('/store', [SubmissionController::class, 'store']);
+
+Route::post('/error', [SubmissionController::class, 'store']);

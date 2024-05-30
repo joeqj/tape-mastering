@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\Testing\File;
 
 class SubmissionController extends Controller
 {
@@ -19,49 +19,78 @@ class SubmissionController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $users = User::all();
-
-        return view('pages.create', [
-            'users' => $users
-        ]);
-    }
-
-    public function store()
-    {
-        $data = request()->validate([
-            'user_id' => ['integer', Rule::exists('users', 'id')],
-            'title' => ['string']
+        $validated = $request->validate([
+            'dropzone-file' => 'mimes:wav,flac,mp3,aiff'
         ]);
 
-        Submission::create($data);
+        if ($validated) {
+            $user = auth()->user();
 
-        return redirect('/');
+            $file = $request->file('dropzone-file');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs(path: 'uploads/', name: $user->id . $filename, options: 'backblaze');
+
+            return view('user.upload', [
+                'fileName' => $filename,
+                'path' => $path
+            ]);
+        }
+
+        return redirect()->back()->withErrors(['upload' => 'Invalid File']);
     }
 
-    public function edit(Submission $post)
+    public function error()
     {
-        return view('pages.edit', [
-            'post' => $post
+        return view('user.error');
+    }
+
+    public function store(Request $request)
+    {
+        $user = auth()->user();
+
+        $validated = $request->validate([
+            'title' => ['string'],
+            'comment' => ['string'],
+            'upload' => ['mimes:wav,flac,mp3,aiff']
         ]);
+
+        if ($validated) {
+            $data = [
+                'title' => $request->get('title'),
+                'comment' => $request->get('comment'),
+                'user_id' => $user->id
+            ];
+
+            Submission::create($data);
+        }
+
+        return redirect()->back()->withErrors(['title' => 'Invalid Description']);
     }
 
-    public function update(Submission $post)
-    {
-        $data = request()->validate([
-            'title' => ['string']
-        ]);
+    // public function edit(Submission $post)
+    // {
+    //     return view('pages.edit', [
+    //         'post' => $post
+    //     ]);
+    // }
 
-        $post->update($data);
+    // public function update(Submission $post)
+    // {
+    //     $data = request()->validate([
+    //         'title' => ['string']
+    //     ]);
 
-        return redirect('/');
-    }
+    //     $post->update($data);
 
-    public function destroy(Submission $post)
-    {
-        $post->delete();
+    //     return redirect('/');
+    // }
 
-        return redirect('/');
-    }
+    // public function destroy(Submission $post)
+    // {
+    //     $post->delete();
+
+    //     return redirect('/');
+    // }
 }
