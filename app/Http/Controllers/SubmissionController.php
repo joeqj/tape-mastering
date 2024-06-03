@@ -32,24 +32,29 @@ class SubmissionController extends Controller
 
             $sumbissions = Submission::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
             $new_user = false;
+            $discount_songs_left = 2;
 
             if ($sumbissions->count() < 2) {
                 $new_user = true;
+                $discount_songs_left = $discount_songs_left - $sumbissions->count();
             }
 
             return view('user.upload', [
                 'fileName' => $filename,
                 'path' => $path,
-                'new_user' => $new_user
+                'new_user' => $new_user,
+                'discount_songs_left' => $discount_songs_left
             ]);
         }
 
         return redirect()->back()->withErrors(['upload' => 'Invalid File']);
     }
 
-    public function error()
+    public function error(Request $request)
     {
-        return view('user.error');
+        return view('user.error', [
+            'error' => $request->get('error')
+        ]);
     }
 
     public function store(Request $request)
@@ -72,9 +77,11 @@ class SubmissionController extends Controller
                 'status' => $request->get('status')
             ];
 
-            Submission::create($data);
+            $id = Submission::create($data);
 
-            return redirect('/dashboard')->with('status', 'Your request has been submitted.');
+            return redirect()->route('create-checkout-session', [
+                'entry_id' => $id
+            ]);
         }
 
         return redirect()->back()->withErrors(['title' => 'Invalid Description']);

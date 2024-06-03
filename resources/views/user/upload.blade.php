@@ -6,7 +6,14 @@
             Complete your upload
         </h1>
 
-        <form action="{{ url('/store') }}" method="POST" class="space-y-5" enctype="multipart/form-data">
+        <div class="max-w-3xl pt-5 space-y-4">
+            <p>
+                Add any details to your upload to help with the mastering process - a particular tone or style that you're
+                looking for, or a link to a song that we can use as a reference to do our best to match.
+            </p>
+        </div>
+
+        <form action="{{ url('/store') }}" method="POST" class="space-y-8" enctype="multipart/form-data">
             @csrf
 
             <input type="hidden" name="user_upload" id="user_upload" value="{{ $path }}">
@@ -28,6 +35,22 @@
                 <input type="hidden" name="status" id="status" value="pending">
 
             </div>
+
+            <div class="max-w-sm border border-black border-opacity-15 shadow-sm p-4">
+                <h3 class="text-2xl font-extrabold dark:text-white mb-5">Order Summary</h3>
+
+                <div class="flex justify-between">
+                    <p>1x Audio to tape mastering service</p>
+                    <p>£8.00</p>
+                </div>
+
+                <div class="flex justify-between mt-4 pt-4 border-t border-black border-opacity-15">
+                    <p>Order Total</p>
+                    <p>£8.00</p>
+                </div>
+            </div>
+
+            <p class="text-sm">Currency conversion will be taken care of in the next step</p>
 
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>

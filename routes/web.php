@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,9 @@ Route::get('/dashboard', [DashboardController::class, 'view'])->middleware('auth
 Route::post('/upload', [SubmissionController::class, 'create']);
 Route::post('/store', [SubmissionController::class, 'store']);
 
-Route::post('/error', [SubmissionController::class, 'store']);
+Route::get('/error', [SubmissionController::class, 'error'])->name('error');
+Route::get('/create-checkout-session', [PaymentController::class, 'create'])->name('create-checkout-session');
+Route::get('/payment/success/{id}', [PaymentController::class, 'success']);
+Route::get('/payment/cancel/{id}', [PaymentController::class, 'cancel']);
 
 Route::post('/cancel-upload', [UserActivityController::class, 'userLeaving']);

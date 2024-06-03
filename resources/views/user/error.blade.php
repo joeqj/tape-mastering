@@ -2,20 +2,12 @@
 
 @section('content')
     <section class="mt-10 lg:w-3/4 lg:mx-auto">
-        <h1 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
+        <h1 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl mb-4">
             Error
         </h1>
 
-        @dump($test)
-
-        <p>There was an error with your upload, please try again</p>
-
-        @if ($errors->any())
-            <ul class="border border-red-500 text-red-500 rounded-md p-4 max-w-sm mx-auto mb-4">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+        @if ($error)
+            <p>{{ $error }}</p>
         @endif
 
         <form action="{{ url('/upload') }}" method="POST" enctype="multipart/form-data"

@@ -14,7 +14,7 @@
                 <li
                     class="grid items-center grid-cols-12 border border-b border-black border-opacity-15 rounded-md p-5 shadow-sm">
                     <p class="text-xl font-bold col-span-6 pr-16 truncate">{{ $entry->title }}</p>
-                    <p class="col-span-2">{{ $entry->created_at }}</p>
+                    <p class="col-span-2">{{ $entry->created_at->diffForHumans() }}</p>
                     <div class="col-span-2 text-center">
                         <span
                             class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-4 py-2 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ $entry->status }}</span>
