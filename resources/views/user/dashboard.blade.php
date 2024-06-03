@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <section class="mt-10 lg:w-3/4 lg:mx-auto">
+    <section class="mt-10">
         <div class="flex justify-between items-center mb-9">
             <h1 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
                 Your Masters
@@ -13,7 +13,7 @@
             @foreach ($submissions as $entry)
                 <li
                     class="grid items-center grid-cols-12 border border-b border-black border-opacity-15 rounded-md p-5 shadow-sm">
-                    <p class="text-xl font-bold col-span-6">{{ $entry->title }}</p>
+                    <p class="text-xl font-bold col-span-6 pr-16 truncate">{{ $entry->title }}</p>
                     <p class="col-span-2">{{ $entry->created_at }}</p>
                     <div class="col-span-2 text-center">
                         <span
@@ -65,8 +65,8 @@
         </form>
 
     </section>
-    <section class="mt-12 lg:w-3/4 lg:mx-auto">
+    <section class="mt-12">
         <h2 class="mb-4 text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl">FAQs</h2>
-        @include('includes.faq')
+        @include('user.blocks.faq')
     </section>
 @stop

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Submission;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Testing\File;
 
 class SubmissionController extends Controller
 {
@@ -30,11 +28,19 @@ class SubmissionController extends Controller
 
             $file = $request->file('dropzone-file');
             $filename = $file->getClientOriginalName();
-            $path = $file->store('uploads', 'r2');
+            $path = $file->store('user_uploads', 'r2');
+
+            $sumbissions = Submission::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
+            $new_user = false;
+
+            if ($sumbissions->count() < 2) {
+                $new_user = true;
+            }
 
             return view('user.upload', [
                 'fileName' => $filename,
-                'path' => $path
+                'path' => $path,
+                'new_user' => $new_user
             ]);
         }
 
@@ -51,19 +57,24 @@ class SubmissionController extends Controller
         $user = auth()->user();
 
         $validated = $request->validate([
-            'title' => ['string'],
-            'comment' => ['string'],
-            'upload' => ['mimes:wav,flac,mp3,aiff']
+            'title' => ['required', 'string'],
+            'user_upload' => ['required', 'string'],
+            'status' => ['required', 'string']
         ]);
 
         if ($validated) {
+
             $data = [
                 'title' => $request->get('title'),
                 'comment' => $request->get('comment'),
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'user_upload' => $request->get('user_upload'),
+                'status' => $request->get('status')
             ];
 
             Submission::create($data);
+
+            return redirect('/dashboard')->with('status', 'Your request has been submitted.');
         }
 
         return redirect()->back()->withErrors(['title' => 'Invalid Description']);
@@ -87,10 +98,10 @@ class SubmissionController extends Controller
     //     return redirect('/');
     // }
 
-    // public function destroy(Submission $post)
-    // {
-    //     $post->delete();
+    public function destroy(Submission $post)
+    {
+        $post->delete();
 
-    //     return redirect('/');
-    // }
+        return redirect('/');
+    }
 }

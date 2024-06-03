@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        $sumbissions = Submission::orderBy('created_at')->where('id', $user->id)->get();
+        $sumbissions = Submission::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
 
         return view('user.dashboard', [
             'user' => $user,

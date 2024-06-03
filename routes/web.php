@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,5 @@ Route::post('/upload', [SubmissionController::class, 'create']);
 Route::post('/store', [SubmissionController::class, 'store']);
 
 Route::post('/error', [SubmissionController::class, 'store']);
+
+Route::post('/cancel-upload', [UserActivityController::class, 'userLeaving']);
