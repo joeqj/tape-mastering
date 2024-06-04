@@ -12,7 +12,8 @@
             </p>
         </div>
 
-        <form action="{{ url('/store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+        <form action="{{ url('/store') }}" method="POST" enctype="multipart/form-data" class="space-y-8"
+            x-data="orderForm">
             @csrf
 
             <input type="hidden" name="user_upload" id="user_upload" value="{{ $path }}">
@@ -42,13 +43,38 @@
                     <p>£8.00</p>
                 </div>
 
+                <div x-show="hasDiscount" x-cloak class="flex justify-between mt-2">
+                    <p class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                            <path
+                                d="M11.707 2.293A.997.997 0 0 0 11 2H6a.997.997 0 0 0-.707.293l-3 3A.996.996 0 0 0 2 6v5c0 .266.105.52.293.707l10 10a.997.997 0 0 0 1.414 0l8-8a.999.999 0 0 0 0-1.414l-10-10zM13 19.586l-9-9V6.414L6.414 4h4.172l9 9L13 19.586z">
+                            </path>
+                            <circle cx="8.353" cy="8.353" r="1.647"></circle>
+                        </svg>
+                        <span x-text="coupon"></span>
+                    </p>
+                    <p>- £<span x-text="discount"></span></p>
+                </div>
+
                 <div class="flex justify-between mt-4 pt-4 border-t border-black border-opacity-15">
                     <p>Order Total</p>
-                    <p>£8.00</p>
+                    <p id="total" x-ref="total" x-text="displayedTotal">£8.00</p>
                 </div>
             </div>
 
-            <p class="text-sm">Currency conversion will be taken care of in the next step</p>
+            <div class="max-w-xs">
+                <label for="coupon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Coupon</label>
+                <div class="relative">
+                    <input type="text" id="coupon" name="coupon" x-ref="coupon"
+                        class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <button @click.prevent="checkCoupon()"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Apply</button>
+                </div>
+                <p x-show="hasError" x-text="error" class="text-red-500 mt-2" x-cloak></p>
+            </div>
+
+            <p>Currency conversion will be taken care of in the next step</p>
 
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Go

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class SubmissionController extends Controller
 {
+    /*
+        List all submissions
+        @return View: list page
+    */
     public function list()
     {
         $audio = Submission::orderByDesc('created_at')
@@ -20,6 +24,11 @@ class SubmissionController extends Controller
         ]);
     }
 
+    /*
+        Validates the uploaded file and sends this data to the next page
+        @param Request: request
+        @return View: upload
+    */
     public function create(Request $request)
     {
         $user = auth()->user();
@@ -33,26 +42,18 @@ class SubmissionController extends Controller
             $filename = $file->getClientOriginalName();
             $path = $file->store('user_uploads', 'r2');
 
-            $sumbissions = Submission::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
-            $new_user = false;
-            $discount_songs_left = 2;
-
-            if ($sumbissions->count() < 2) {
-                $new_user = true;
-                $discount_songs_left = $discount_songs_left - $sumbissions->count();
-            }
-
             return view('user.upload', [
                 'fileName' => $filename,
-                'path' => $path,
-                'new_user' => $new_user,
-                'discount_songs_left' => $discount_songs_left
+                'path' => $path
             ]);
         }
 
         return redirect()->route('dashboard')->withErrors(['errors' => 'There was an error with your submission. Please try again']);
     }
 
+    /*
+        TODO: Check this can be safely deleted
+    */
     public function error(Request $request)
     {
         return view('user.error', [
@@ -60,6 +61,11 @@ class SubmissionController extends Controller
         ]);
     }
 
+    /*
+        Submits submission data before sending user to the payment gateway
+        @param Request: request
+        @return Redirect: Error to dashboard or Successful to stripe
+    */
     public function store(Request $request)
     {
         $user = auth()->user();
@@ -97,7 +103,8 @@ class SubmissionController extends Controller
         $id = Submission::create($data);
 
         return redirect()->route('create-checkout-session', [
-            'entry_id' => $id
+            'entry_id' => $id,
+            'coupon' => $request->get('coupon')
         ]);
     }
 
@@ -119,6 +126,11 @@ class SubmissionController extends Controller
     //     return redirect('/');
     // }
 
+    /*
+        Destroys a post
+        @param Submission: post
+        @return Redirect: homepage
+    */
     public function destroy(Submission $post)
     {
         $post->delete();

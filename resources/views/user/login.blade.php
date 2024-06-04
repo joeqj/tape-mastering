@@ -2,13 +2,10 @@
 
 @section('content')
     <section class="py-10">
-        @if ($errors->any())
-            <ul class="border border-red-500 text-red-500 rounded-md p-4 max-w-sm mx-auto mb-4">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
+        <h1
+            class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl text-center mb-16">
+            Login
+        </h1>
 
         <form action="{{ url('login') }}" method="POST" class="max-w-sm mx-auto">
             @csrf
@@ -36,5 +33,31 @@
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
         </form>
+
+        <p class="max-w-sm mx-auto mt-10">Dont have an account? <a href="{{ url('/signup') }}" class="underline">Sign up
+                now</a>
+        </p>
     </section>
+
+    @if ($errors->any())
+        <ul x-data="toastDialog" x-show="open" x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="border bg-red-500 text-white rounded-md p-4 max-w-sm fixed bottom-4 left-4 z-50">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
+    @if ($message)
+        <ul x-data="toastDialog(10000)" x-show="open" x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="border bg-green-500 text-white rounded-md p-4 max-w-sm fixed bottom-4 left-4 z-50">
+            <li>{{ $message }}</li>
+        </ul>
+    @endif
 @stop

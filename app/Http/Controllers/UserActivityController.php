@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class UserActivityController extends Controller
 {
+    /*
+        If a user abandons a submission half way through make sure to delete the uploaded file
+        @param Request: request
+        @return JSON: response
+    */
     public function userLeaving(Request $request)
     {
         $upload = $request->input('upload_path');

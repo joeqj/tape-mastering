@@ -3,16 +3,10 @@ import Alpine from "alpinejs";
 
 window.Alpine = Alpine;
 
-document.addEventListener("alpine:init", () => {
-    Alpine.data("errorDialog", () => ({
-        open: true,
+import toastDialog from "./behaviours/toastDialog";
+Alpine.data("toastDialog", toastDialog);
 
-        init() {
-            setTimeout(() => {
-                this.open = false;
-            }, 4000);
-        },
-    }));
-});
+import orderForm from "./behaviours/orderForm";
+Alpine.data("orderForm", orderForm);
 
 Alpine.start();
