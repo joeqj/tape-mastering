@@ -8,12 +8,11 @@
 
         <div class="max-w-3xl pt-5 space-y-4">
             <p>
-                Add any details to your upload to help with the mastering process - a particular tone or style that you're
-                looking for, or a link to a song that we can use as a reference to do our best to match.
+                Add any details to your master before you are taken to our secure payment gateway.
             </p>
         </div>
 
-        <form action="{{ url('/store') }}" method="POST" class="space-y-8" enctype="multipart/form-data">
+        <form action="{{ url('/store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
             @csrf
 
             <input type="hidden" name="user_upload" id="user_upload" value="{{ $path }}">
@@ -26,8 +25,7 @@
             </div>
 
             <div>
-
-                <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comments</label>
+                @include('user.blocks.comment-label')
                 <textarea id="comment" name="comment" rows="4"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Any useful information goes here"></textarea>
@@ -36,7 +34,7 @@
 
             </div>
 
-            <div class="max-w-sm border border-black border-opacity-15 shadow-sm p-4">
+            <div class="max-w-sm border border-black border-opacity-15 rounded-lg shadow-sm p-4">
                 <h3 class="text-2xl font-extrabold dark:text-white mb-5">Order Summary</h3>
 
                 <div class="flex justify-between">
@@ -53,7 +51,8 @@
             <p class="text-sm">Currency conversion will be taken care of in the next step</p>
 
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Go
+                to Payment</button>
         </form>
 
 

@@ -36,18 +36,10 @@
 
         <p>Drop your audio to be mastered below to get started</p>
 
-        @if ($errors->any())
-            <ul class="border border-red-500 text-red-500 rounded-md p-4 max-w-sm mx-auto mb-4">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
-
         <form action="{{ url('/upload') }}" method="POST" enctype="multipart/form-data"
             class="flex items-center justify-center w-full mt-9">
             @csrf
-            <label for="dropzone-file"
+            <label for="upload"
                 class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -59,8 +51,7 @@
                             upload</span> or drag and drop</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">WAV, FLAC, AIFF, MP3 (Use WAV for best quality)</p>
                 </div>
-                <input id="dropzone-file" name="dropzone-file" onchange="this.form.submit()" type="file"
-                    class="hidden" />
+                <input id="upload" name="upload" onchange="this.form.submit()" type="file" class="hidden" />
             </label>
         </form>
 
@@ -69,4 +60,16 @@
         <h2 class="mb-4 text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl">FAQs</h2>
         @include('user.blocks.faq')
     </section>
+
+    @if ($errors->any())
+        <ul x-data="errorDialog" x-show="open" x-transition:enter="transition ease-out duration-500"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-500" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="border bg-red-500 text-white rounded-md p-4 max-w-sm fixed bottom-4 left-4 z-50">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
 @stop

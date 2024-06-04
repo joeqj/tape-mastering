@@ -1,6 +1,18 @@
 import "flowbite";
+import Alpine from "alpinejs";
 
-const submitUpload = (event) => {
-    event.preventDefault();
-    console.log(event);
-};
+window.Alpine = Alpine;
+
+document.addEventListener("alpine:init", () => {
+    Alpine.data("errorDialog", () => ({
+        open: true,
+
+        init() {
+            setTimeout(() => {
+                this.open = false;
+            }, 4000);
+        },
+    }));
+});
+
+Alpine.start();

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SubmissionController extends Controller
 {
@@ -19,14 +22,14 @@ class SubmissionController extends Controller
 
     public function create(Request $request)
     {
+        $user = auth()->user();
+
         $validated = $request->validate([
-            'dropzone-file' => 'mimes:wav,flac,mp3,aiff'
+            'upload' => 'mimes:wav,flac,mp3,aiff'
         ]);
 
         if ($validated) {
-            $user = auth()->user();
-
-            $file = $request->file('dropzone-file');
+            $file = $request->file('upload');
             $filename = $file->getClientOriginalName();
             $path = $file->store('user_uploads', 'r2');
 
@@ -47,7 +50,7 @@ class SubmissionController extends Controller
             ]);
         }
 
-        return redirect()->back()->withErrors(['upload' => 'Invalid File']);
+        return redirect()->route('dashboard')->withErrors(['errors' => 'There was an error with your submission. Please try again']);
     }
 
     public function error(Request $request)
@@ -61,30 +64,41 @@ class SubmissionController extends Controller
     {
         $user = auth()->user();
 
-        $validated = $request->validate([
+        // We create a Validator object manually as the default validation produces a GET request and we wish to stick to POST at this stage.
+        $validator = Validator::make($request->all(), [
             'title' => ['required', 'string'],
             'user_upload' => ['required', 'string'],
             'status' => ['required', 'string']
         ]);
 
-        if ($validated) {
+        if ($validator->fails()) {
+            // User has reached a scenario that should rarely happen:
+            // Roll back the file the user uploaded and log info
+            Log::info("A user faced a severe upload error: " . $user->email);
 
-            $data = [
-                'title' => $request->get('title'),
-                'comment' => $request->get('comment'),
-                'user_id' => $user->id,
-                'user_upload' => $request->get('user_upload'),
-                'status' => $request->get('status')
-            ];
+            $upload = $request->get('user_upload');
 
-            $id = Submission::create($data);
+            if (Storage::disk('r2')->exists($upload)) {
+                Storage::disk('r2')->delete($upload);
+                Log::info("A user uploaded file was deleted: " . $upload);
+            }
 
-            return redirect()->route('create-checkout-session', [
-                'entry_id' => $id
-            ]);
+            return redirect()->route('dashboard')->withErrors(['errors' => 'There was an error with your submission. Please try again']);
         }
 
-        return redirect()->back()->withErrors(['title' => 'Invalid Description']);
+        $data = [
+            'title' => $request->get('title'),
+            'comment' => $request->get('comment'),
+            'user_id' => $user->id,
+            'user_upload' => $request->get('user_upload'),
+            'status' => $request->get('status')
+        ];
+
+        $id = Submission::create($data);
+
+        return redirect()->route('create-checkout-session', [
+            'entry_id' => $id
+        ]);
     }
 
     // public function edit(Submission $post)

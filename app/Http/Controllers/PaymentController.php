@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Submission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Env;
+use Illuminate\Support\Facades\Storage;
 use Stripe\StripeClient;
 
 class PaymentController extends Controller
@@ -36,9 +36,22 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        return view('payment.success', [
-            'id' => $request->route('id')
-        ]);
+        $user = auth()->user();
+
+        $submission = Submission::orderBy('created_at', 'desc')
+            ->where('user_id', $user->id)
+            ->where('id', $request->route('id'))
+            ->get();
+
+
+        $entry = $submission->first();
+
+        if ($entry && $entry->status == "pending") {
+            $entry->status = "Paid";
+            $entry->save();
+        }
+
+        return view('payment.success');
     }
 
     public function cancel(Request $request)
@@ -55,15 +68,14 @@ class PaymentController extends Controller
 
         if ($entry && $entry->status == "pending") {
 
-            $entry->delete();
+            if (Storage::disk('r2')->exists($entry->user_upload)) {
+                Storage::disk('r2')->delete($entry->user_upload);
+            }
 
-            return view('payment.cancel', [
-                'id' => $entry->status
-            ]);
+
+            $entry->delete();
         }
 
-        return redirect()->route('error', [
-            'error' => 'There was an error.'
-        ]);
+        return view('payment.cancel');
     }
 }
