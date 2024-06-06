@@ -6,7 +6,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=rubik:400,600|chivo-mono:500,800&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
     @vite('resources/scss/app.scss')

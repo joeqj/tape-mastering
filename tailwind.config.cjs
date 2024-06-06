@@ -7,7 +7,23 @@ export default {
         "./node_modules/flowbite/**/*.js",
     ],
     theme: {
-        extend: {},
+        fontFamily: {
+            sans: ["Rubik", "Helvetica", "ui-sans-serif", "system-ui"],
+            mono: ["Chivo Mono", "monospace"],
+        },
+
+        extend: {
+            colors: {
+                green: {
+                    DEFAULT: "hsl(105deg 100% 55%)",
+                },
+            },
+
+            spacing: {
+                header: "106px",
+                footer: "81px",
+            },
+        },
 
         container: {
             center: true,
@@ -19,5 +35,9 @@ export default {
             },
         },
     },
-    plugins: [require("flowbite/plugin")],
+    plugins: [
+        require("flowbite/plugin"),
+        require("flowbite-typography"),
+        require("tailwindcss-container-bleed"),
+    ],
 };

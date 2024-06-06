@@ -1,0 +1,46 @@
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: theme("spacing.3") theme("spacing.5");
+    font-weight: theme("fontWeight.medium");
+    text-align: center;
+    text-decoration: none;
+    color: theme("colors.white");
+    border-radius: theme("borderRadius.lg");
+    transition: background-color ease 300ms;
+
+    background-color: theme("colors.neutral.800");
+
+    &:hover {
+        background-color: theme("colors.neutral.950");
+    }
+
+    &:focus {
+        @apply ring-4 ring-blue-300;
+    }
+}
+
+.btn-inline {
+    //  font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+    padding: theme("spacing.2") theme("spacing.4");
+    font-weight: theme("fontWeight.medium");
+    text-align: center;
+    text-decoration: none;
+    color: theme("colors.white");
+    position: absolute;
+    inset-inline-end: theme("spacing[2.5]");
+    bottom: theme("spacing[2.5]");
+    transition: background-color ease 300ms;
+    @apply text-sm rounded-lg;
+
+    background-color: theme("colors.neutral.800");
+
+    &:hover {
+        background-color: theme("colors.neutral.950");
+    }
+
+    &:focus {
+        @apply ring-4 ring-blue-300;
+    }
+}

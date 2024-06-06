@@ -1,0 +1,82 @@
+.py-section {
+    padding: theme("spacing.10") 0;
+
+    @screen sm {
+        padding: theme("spacing.20") 0;
+    }
+
+    @screen lg {
+        padding: theme("spacing.40") 0;
+    }
+}
+.py-section-sm {
+    padding: theme("spacing.4") 0;
+
+    @screen sm {
+        padding: theme("spacing.8") 0;
+    }
+
+    @screen lg {
+        padding: theme("spacing.16") 0;
+    }
+}
+
+.py-section-lg {
+    padding: theme("spacing.16") 0;
+
+    @screen sm {
+        padding: theme("spacing.32") 0;
+    }
+
+    @screen lg {
+        padding: theme("spacing.64") 0;
+    }
+}
+
+.pt-section {
+    padding-top: theme("spacing.10");
+
+    @screen sm {
+        padding-top: theme("spacing.20");
+    }
+
+    @screen lg {
+        padding-top: theme("spacing.40");
+    }
+}
+
+.pt-section-sm {
+    padding-top: theme("spacing.4");
+
+    @screen sm {
+        padding-top: theme("spacing.8");
+    }
+
+    @screen lg {
+        padding-top: theme("spacing.16");
+    }
+}
+
+.pb-section {
+    padding-bottom: theme("spacing.10");
+
+    @screen sm {
+        padding-bottom: theme("spacing.20");
+    }
+
+    @screen lg {
+        padding-bottom: theme("spacing.40");
+    }
+}
+
+.mb-section {
+    margin-bottom: theme("spacing.10");
+
+    @screen sm {
+        margin-bottom: theme("spacing.20");
+    }
+
+    @screen lg {
+        margin-bottom: theme("spacing.40");
+    }
+}

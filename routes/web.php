@@ -7,7 +7,10 @@ use App\Http\Controllers\UserActivityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [SubmissionController::class, 'list']);
+Route::view('/', 'pages.home');
+Route::view('/about', 'pages.about');
+
+Route::get('/admin', [SubmissionController::class, 'list']);
 
 
 

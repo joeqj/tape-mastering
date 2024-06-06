@@ -5,7 +5,7 @@
         <button type="button"
             class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3"
             data-accordion-target="#accordion-flush-body-1" aria-expanded="false" aria-controls="accordion-flush-body-1">
-            <span>What is Flowbite?</span>
+            <span>How long do masters take?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -14,13 +14,11 @@
         </button>
     </h2>
     <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
-        <div class="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive
-                components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-            <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a
-                    href="/docs/getting-started/introduction/"
-                    class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing
-                websites even faster with components on top of Tailwind CSS.</p>
+        <div class="py-5 border-b border-gray-200 dark:border-gray-700 format lg:format-lg max-w-none">
+            <p>Masters typically take any where from 2-7 days to complete depending on workload.</p>
+            <p>We're currently working with just 1 machine so it can often take a while to work through a queue of
+                submissions. We hope to expand over time to give you faster turnaround times and cheaper master costs.
+            </p>
         </div>
     </div>
     <h2 id="accordion-flush-heading-2">
@@ -28,7 +26,7 @@
             class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3"
             data-accordion-target="#accordion-flush-body-2" aria-expanded="false"
             aria-controls="accordion-flush-body-2">
-            <span>Is there a Figma file available?</span>
+            <span>How will I know when a master is ready</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -37,12 +35,14 @@
         </button>
     </h2>
     <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
-        <div class="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the
-                Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-            <p class="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/"
-                    class="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the
-                utility classes from Tailwind CSS and components from Flowbite.</p>
+        <div class="py-5 border-b border-gray-200 dark:border-gray-700 format lg:format-lg max-w-none">
+            <p>
+                Once you submit an audio file to be mastered you will be able to check on the progress of the master in
+                your Dashboard.
+            </p>
+            <p>
+                Once a master is ready you'll receive a notification and will have 30 days to download your audio.
+            </p>
         </div>
     </div>
     <h2 id="accordion-flush-heading-3">
@@ -50,7 +50,7 @@
             class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3"
             data-accordion-target="#accordion-flush-body-3" aria-expanded="false"
             aria-controls="accordion-flush-body-3">
-            <span>What are the differences between Flowbite and Tailwind UI?</span>
+            <span>How much does it cost?</span>
             <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,21 +59,43 @@
         </button>
     </h2>
     <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
-        <div class="py-5 border-b border-gray-200 dark:border-gray-700">
-            <p class="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from
-                Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another
-                difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers
-                sections of pages.</p>
-            <p class="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite,
-                Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of
-                two worlds.</p>
-            <p class="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-            <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                <li><a href="https://flowbite.com/pro/"
-                        class="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                <li><a href="https://tailwindui.com/" rel="nofollow"
-                        class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-            </ul>
+        <div class="py-5 border-b border-gray-200 dark:border-gray-700 format lg:format-lg max-w-none">
+            <p>
+                We try to keep our pricing as honest as possible.
+            </p>
+            <p>
+                Currently a single master will cost £8 GBP. When uploading your audio and proceeding to the payment
+                stage Stripe will perform a currency conversion to give you the exact price according to your location.
+            </p>
+            <p>
+                All profits from Reel Master will be reinvested back into the service to give you a better experience
+                and to help us grow with our customers.
+            </p>
+        </div>
+    </div>
+    <h2 id="accordion-flush-heading-4">
+        <button type="button"
+            class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3"
+            data-accordion-target="#accordion-flush-body-4" aria-expanded="false"
+            aria-controls="accordion-flush-body-4">
+            <span>What experience do you have?</span>
+            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 5 5 1 1 5" />
+            </svg>
+        </button>
+    </h2>
+    <div id="accordion-flush-body-4" class="hidden" aria-labelledby="accordion-flush-heading-4">
+        <div class="py-5 border-b border-gray-200 dark:border-gray-700 format lg:format-lg max-w-none">
+            <p>
+                I started recording music on a 4-track cassette recorder from the age of 11 and have been using tape
+                recorders in all shapes and sizes as creative tools and mastering solutions.
+            </p>
+            <p>
+                Studying Music Technology and working in multiple professional studios I've had the
+                fortune of picking up a lot of techniques along the way.
+            </p>
         </div>
     </div>
 </div>

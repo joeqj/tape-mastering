@@ -1,13 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-    <section class="py-10">
-        <h1
-            class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl text-center mb-16">
-            Login
-        </h1>
+    <section class="py-section-sm">
+        <div class="format lg:format-lg text-center mb-16 mx-auto">
+            <h1>
+                Login
+            </h1>
+        </div>
 
-        <form action="{{ url('login') }}" method="POST" class="max-w-sm mx-auto">
+        <form action="{{ url('login') }}" method="POST" class="max-w-md mx-auto">
             @csrf
 
             <div class="mb-5">
@@ -30,11 +31,10 @@
                 </div>
                 <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
             </div>
-            <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            <button type="submit" class="btn">Log In</button>
         </form>
 
-        <p class="max-w-sm mx-auto mt-10">Dont have an account? <a href="{{ url('/signup') }}" class="underline">Sign up
+        <p class="max-w-md mx-auto mt-10">Dont have an account? <a href="{{ url('/signup') }}" class="underline">Sign up
                 now</a>
         </p>
     </section>

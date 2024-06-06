@@ -1,23 +1,22 @@
 @extends('layouts.default')
 
 @section('content')
-    <section class="mt-10">
+    <section class="pt-section-sm">
         <div class="flex justify-between items-center mb-9">
-            <h1 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl">
+            <h1 class="text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
                 Your Masters
             </h1>
             <p class="text-sm lg:text-md">Logged in as {{ $user->name }}</p>
         </div>
-
         <ul class="space-y-4">
             @foreach ($submissions as $entry)
                 <li
                     class="grid items-center grid-cols-12 border border-b border-black border-opacity-15 rounded-md p-5 shadow-sm">
-                    <p class="text-xl font-bold col-span-6 pr-16 truncate">{{ $entry->title }}</p>
+                    <p class="text-xl font-semibold col-span-6 pr-16 truncate">{{ $entry->title }}</p>
                     <p class="col-span-2">{{ $entry->created_at->diffForHumans() }}</p>
                     <div class="col-span-2 text-center">
                         <span
-                            class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-4 py-2 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ $entry->status }}</span>
+                            class="bg-gray-100 text-gray-800 text-xs font-semibold me-2 px-4 py-2 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ $entry->status }}</span>
                     </div>
                     <div class="col-span-2 text-right">
                         @if ($entry->master_download)
@@ -30,11 +29,12 @@
                 </li>
             @endforeach
         </ul>
-
-        <h2 class="mt-10 mb-2 text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl">
+    </section>
+    <section class="py-section-sm">
+        <h2 class="mt-10 mb-2 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">
             Start a new master</h2>
 
-        <p>Drop your audio to be mastered below to get started</p>
+        <p>Upload your audio below to get started.</p>
 
         <form action="{{ url('/upload') }}" method="POST" enctype="multipart/form-data"
             class="flex items-center justify-center w-full mt-9">
@@ -56,8 +56,8 @@
         </form>
 
     </section>
-    <section class="mt-12">
-        <h2 class="mb-4 text-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-2xl">FAQs</h2>
+    <section class="py-section-sm">
+        <h2 class="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl">FAQs</h2>
         @include('user.blocks.faq')
     </section>
 
